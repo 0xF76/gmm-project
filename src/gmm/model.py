@@ -187,6 +187,60 @@ class GaussianMixture:
             prev_ll = ll
         
         return self
+    
+    def predict_proba(self, X: np.ndarray) -> np.ndarray:
+        """
+        Compute responsibilities for each sample.
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input data points.
+
+        Returns
+        -------
+        resp : ndarray of shape (n_samples, n_components)
+            Responsibilities for each data point and component.
+            In other words, probability that each data point belongs to each component.
+        """
+        return self._e_step(X)
+    
+    def predict(self, X: np.ndarray) -> np.ndarray:
+        """
+        Assign each sample tot he most likely component (hard clustering).
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input data points.
+
+        Returns
+        -------
+        labels : ndarray of shape (n_samples,)
+            Assigned component labels for each data point.
+        """
+        resp = self.predict_proba(X)
+        return np.argmax(resp, axis=1)
+    
+    def score_samples(self, X: np.ndarray) -> np.ndarray:
+        """
+        Compute the log-probability density of each sample.
+
+        Parameters
+        ----------
+        X : ndarray of shape (n_samples, n_features)
+            Input data points.
+
+        Returns
+        -------
+        log_p: ndarray of shape (n_samples,)
+            Log-probability density of each data point.
+        """
+        N, d = X.shape
+        total = np.zeros(N)
+        for k in range(self.n_components):
+            total += self.weights_[k] * self._gaussian_pdf(X, self.means_[k], self.covariances_[k])
+        return np.log(total + 1e-12) # avoid log(0)
 
 
 

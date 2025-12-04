@@ -34,10 +34,53 @@ gmm-project
 ===========
 
 
-    Add a short description here!
+    A from-scratch implementation of the **Gaussian Mixture Model (GMM)** based on the **Expectation-Maximization (EM)** algorithm.
 
+This project was developed as part of the *Programming in Python Language* course at AGH University of Krakow. It includes:
 
-A longer description of your project goes here...
+- a public API simillar to ``sklearn.mixture.GaussianMixture``
+- soft (``predict_proba``) and hard (``predict``) clustering.
+- log-likelihood computation (``score``).
+
+Project Structure
+=================
+
+The project uses the ``src/`` layout recommended by PyScaffold:
+
+::
+
+    gmm-project/
+    ├── src/gmm/
+    │   ├── __init__.py
+    │   └── model.py
+    ├── tests/
+    ├── docs/
+    ├── CHANGELOG.rst
+    ├── README.rst
+    └── pyproject.toml
+
+Usage Example
+=============
+
+Basic usage of the custom GMM model::
+
+    import numpy as np
+    from gmm import GaussianMixture
+
+    # Generate random data
+    X = np.random.randn(300, 2)
+
+    # Initialize model
+    gmm = GaussianMixture(n_components=3, rng_seed=0)
+
+    # Fit model
+    gmm.fit(X)
+
+    # Predict labels
+    labels = gmm.predict(X)
+
+    # Soft cluster probabilities
+    probs = gmm.predict_proba(X)
 
 
 .. _pyscaffold-notes:
