@@ -83,6 +83,25 @@ Basic usage of the custom GMM model::
     probs = gmm.predict_proba(X)
 
 
+Examples
+=============
+The ``examples/`` directory contains runnable demo scripts that illustrate the behavior of the implemented Gaussian Mixture Model.
+
+Available examples include:
+
+- **GMM vs. scikit-learn comparison**
+
+  A script that fits both the custom and scikit implementation on the same dataset and compares:
+    
+  - estimated means
+  - covariance matrices
+  - mixture weights
+
+- **Covariance ellipse visualization**
+  
+  A visualization demo that plots the learned Gaussian components as
+  covariance ellipses overlaid on the input data.
+
 .. _pyscaffold-notes:
 
 Note

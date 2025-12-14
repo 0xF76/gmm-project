@@ -1,3 +1,10 @@
+"""
+Demo: Comparison of custom GMM with scikit-learn implementation.
+
+This script fits both models on the same dataset and compares
+their learned parameters and clustering behavior.
+"""
+
 from gmm import GaussianMixture
 import numpy as np
 import matplotlib.pyplot as plt

@@ -1,3 +1,11 @@
+"""
+Demo: Visualization of Gaussian covariance ellipses.
+
+This script plots 1σ, 2σ, and 3σ covariance ellipses for each
+Gaussian component learned by the GMM.
+"""
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
