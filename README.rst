@@ -55,6 +55,7 @@ The project uses the ``src/`` layout recommended by PyScaffold:
     │   └── model.py
     ├── tests/
     ├── docs/
+    ├── examples/
     ├── CHANGELOG.rst
     ├── README.rst
     └── pyproject.toml
